@@ -30,7 +30,7 @@ export default function LoginPage() {
       sessionStorage.setItem("user_id", user.id);
       sessionStorage.setItem("user_email", user.email);
 
-      console.log("User  ID Stored:", sessionStorage.getItem("user_id"));
+      // console.log("User  ID Stored:", sessionStorage.getItem("user_id"));
       setMessage(res.data.message); // Set success message
       navigate("/"); // Redirect to home page
       window.location.reload(); // Reload the page

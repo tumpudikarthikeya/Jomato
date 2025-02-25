@@ -50,7 +50,7 @@ const Home = () => {
           },
         });
 
-        console.log(res.data); // Check the data structure in the console
+        // console.log(res.data); // Check the data structure in the console
         setRestaurants(res.data.restaurants); // Store the fetched data in state
         setTotalPages(res.data.totalPages); // Set the total pages from the response
       } catch (error) {
