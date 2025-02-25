@@ -23,16 +23,16 @@ export default function LoginPage() {
       const { token, user } = res.data; // 🔹 Extract user_id and token
  
     sessionStorage.setItem("user_token", token);  // 🔹 Store JWT token
-    sessionStorage.setItem("user_id", user.id);  // 🔹 Store user_id
+    sessionStorage.setItem("user_id", user.id); 
+    sessionStorage.setItem("user_email",user.email) // 🔹 Store user_id
  
-    console.log("JWT Token Stored:", sessionStorage.getItem("user_token"));
+    // console.log("JWT Token Stored:", sessionStorage.getItem("user_token"));
     console.log("User ID Stored:", sessionStorage.getItem("user_id"));
       setMessage(res.data.message);
       // console.log(message);
       navigate("/");
+      window.location.reload();
      
-     
- 
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
     }

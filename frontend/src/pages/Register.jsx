@@ -81,7 +81,7 @@ export default function Register() {
           </button>
         </form>
         <p className="text-center mt-4 text-sm">
-          Already have an account? <a href="/login" className="text-[#ff5200]  font-semibold">Login</a>
+          Already have an account? <a href="/signin" className="text-[#ff5200]  font-semibold">Login</a>
         </p>
       </div>
     </div>

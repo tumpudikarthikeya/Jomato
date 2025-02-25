@@ -26,6 +26,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState(""); // Search term for restaurant name
   const [ratingFilter, setRatingFilter] = useState(0); // Rating filter (default is 0, meaning no filter)
   const pageSize = 9; // Number of items per page
+
  
   const handlePageChange = (event, value) => {
     setPage(value); // Update the page number when the user changes the page
@@ -66,7 +67,7 @@ const Home = () => {
  
   return (
     <div>
-      <Nav />
+      {/* <Nav /> */}
       <Hero2 />
       {/* <HeroSection /> */}
       <DetailSection
@@ -116,7 +117,7 @@ const Home = () => {
         <div className="flex flex-wrap gap-10 px-30 place-content-center w-full">
           {restaurants.length > 0 ? (
             restaurants.map((restaurant) => (
-              <RestaurantCard
+              <RestaurantCard key = {restaurant.restaurant_id}
                 res_id = {restaurant.restaurant_id}
                 name={restaurant.name}
                 img_url={restaurant.image_url}

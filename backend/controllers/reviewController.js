@@ -1,7 +1,8 @@
 const { supabase } = require('../config/db');
  
 const submitReview = async (req, res) => {
-  const { user_id, restaurant_id, rating, comment } = req.body;
+  const { user_id, restaurant_id, rating, comment,email } = req.body;
+ console.log(req.body);
  
   // Validation: Ensure all fields are provided
   if (!user_id || !restaurant_id || !rating || !comment) {
@@ -12,7 +13,7 @@ const submitReview = async (req, res) => {
     // Insert the review into the database
     const { data, error } = await supabase
       .from('reviews')
-      .insert([{ user_id, restaurant_id, rating, comment }])
+      .insert([{ user_id, restaurant_id, rating, comment,email }])
       .single();
  
     if (error) {
@@ -62,8 +63,9 @@ const getReviewsByRestaurant = async (req, res) => {
     // Fetch reviews for the specified restaurant
     const { data, error } = await supabase
       .from('reviews')
-      .select('review_id, user_id, rating, comment, created_at')
-      .eq('restaurant_id', restaurant_id);  // Filter reviews by restaurant_id
+      .select('*')
+      .eq('restaurant_id', restaurant_id)
+      .order('created_at', { ascending: false });  // Filter reviews by restaurant_id
  
     if (error) {
       console.error("Error fetching reviews:", error);  // Log database error

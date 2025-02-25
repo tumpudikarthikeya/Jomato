@@ -12,7 +12,7 @@ const signupUser = async (req, res) => {
         console.log("⏳ Signing up user...");
  
         // Sign up user with Supabase Auth
-        const { data, error } = await supabase.auth.signUp({ email, password });
+        const { data, error } = await supabase.auth.signUp({ email, password,"Display Name" : name });
  
         if (error) {
             return res.status(400).json({ error: error.message });

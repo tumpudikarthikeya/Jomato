@@ -6,9 +6,7 @@ import Checkout from './pages/Checkout';
 import Home from './pages/Home';
 import Tracking from './pages/Tracking';
 import RestaurantDetail from './pages/RestaurantDetail';
-import { Link } from 'react-router-dom';
-import Nav from './components/Home/NavBar';
-
+import Nav from './components/Home/Nav';
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +17,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/restaurants/:id" element={<RestaurantDetail />} />
           <Route path="/reviews/:restaurantId" element={<Reviews />} />

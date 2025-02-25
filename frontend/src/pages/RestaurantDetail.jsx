@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Nav from "../components/Home/Nav";
 import { Skeleton } from "@mui/material"; // Import Skeleton from MUI
 import { TbMeat } from "react-icons/tb";
 import { FaLeaf, FaUtensils } from "react-icons/fa"; // Import React Icons
@@ -14,6 +13,7 @@ const RestaurantDetail = () => {
   const [filter, setFilter] = useState("all"); // Filter state
 
   useEffect(() => {
+    window.scrollTo(0, 0); 
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -69,8 +69,8 @@ const RestaurantDetail = () => {
   });
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <Nav />
+    <div className="bg-gray-100 min-h-screen " id="top">
+      {/* <Nav /> */}
       <div className="w-full px-40 mx-auto py-4 ">
         {loading ? (
           // Shimmer effect while loading
@@ -102,7 +102,8 @@ const RestaurantDetail = () => {
                     📞 Contact: {restaurant.phone}
                   </p>
                 </div>
-                <Link to={`/reviews/${restaurantId}`}>
+                <Link to={`/reviews/${restaurantId}`}
+                >
                   <button className="mt-4 px-4 py-2 bg-[#3A7D44] text-white font-semibold rounded-lg transition duration-200">
                     Write a Review
                   </button>
