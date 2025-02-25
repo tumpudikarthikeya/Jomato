@@ -3,7 +3,7 @@ import { Rating } from "@mui/material";
  
 const RestaurantCard = ({ res_id, name, img_url, rating, cuisine }) => {
   return (
-    <Link to={`/restaurants/${res_id}`} className="max-w-1/3 bg-white rounded-lg shadow-md hover:cursor-pointer hover:shadow-lg transition">
+    <Link to={`/restaurants/${res_id}`} className=" bg-white rounded-lg shadow-md hover:cursor-pointer hover:shadow-lg transition">
       <div>
         <img src={img_url} alt={name} className="h-70 w-100 object-cover rounded-t-md" />
         <div className="mt-3 p-4">
