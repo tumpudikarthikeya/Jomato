@@ -15,6 +15,9 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
+import Hero2 from "../components/Home/Hero2";
+import Nav from "../components/Home/Nav";
+import Footer from "../components/Home/Footer";
  
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -63,7 +66,9 @@ const Home = () => {
  
   return (
     <div>
-      <HeroSection />
+      <Nav />
+      <Hero2 />
+      {/* <HeroSection /> */}
       <DetailSection
         img_url={
           "https://img.freepik.com/free-photo/stewed-white-beans-sliced-pumpkin-tomato-sauce_2829-19775.jpg?t=st=1740359704~exp=1740363304~hmac=9118c386592072242d7be605b2cc1bdeebf80f56225af32c3422d9677d898b41&w=996"
@@ -76,19 +81,19 @@ const Home = () => {
       />
  
       {/* Search and Filter Section */}
-      <div className="search-filter-section justify-center flex items-center gap-4 w-full px-40 mb-20">
+      {/* <div className="search-filter-section justify-center flex items-center gap-4 w-full px-40 mb-20"> */}
         {/* Search Field */}
         {/* Input field */}
-        <TextField
+        {/* <TextField
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Search by Restaurant Name"
             variant="outlined"
             className="w-3/5"
-          />
+          /> */}
  
         {/* Rating Filter */}
-        <FormControl className=" w-1/4">
+        {/* <FormControl className=" w-1/4">
           <InputLabel>Filter by Rating</InputLabel>
           <Select
             value={ratingFilter}
@@ -104,7 +109,7 @@ const Home = () => {
             <MenuItem value={5}>5 Stars</MenuItem>
           </Select>
         </FormControl>
-      </div>
+      </div> */}
  
       <div className="flex flex-col items-center gap-20 w-full">
         {/* Restaurant Cards */}
@@ -136,6 +141,7 @@ const Home = () => {
           />
         </Stack>
       </div>
+      <Footer />
     </div>
   );
 };

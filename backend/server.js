@@ -31,8 +31,7 @@ app.get("/test",async (req,res)=>{
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/restaurants', require('./routes/restaurants'));
 app.use('/api/restaurantsDetails', require('./routes/restaurantDetail'));
-//  app.use('/api/menu', require('./routes/menu'));
-// app.use('/api/cart', require('./routes/cart'));
+ app.use('/api/coupons', require('./routes/couponsRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/reviews', require('./routes/review'));
 

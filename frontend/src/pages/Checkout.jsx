@@ -1,46 +1,60 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem, setCart } from "../redux/reducers/cartReducer"; // Import addItem action
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Checkout = () => {
-  const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [coupons, setCoupons] = useState([]);
+  const [selectedCoupon, setSelectedCoupon] = useState(null);
+  const [cart, setCart] = useState([]); // Store cart state locally
+
+  // Get cart data from localStorage
+  const getCartFromLocalStorage = () => JSON.parse(localStorage.getItem("cart")) || [];
   
-  const cart = useSelector((state) => state.cart.cart); // Get cart state from Redux
-  const dispatch = useDispatch();
+  // Initialize cart state from localStorage on component mount
+  useEffect(() => {
+    const initialCart = getCartFromLocalStorage();
+    setCart(initialCart);
+  }, []);
 
   const updateCartInLocalStorage = (updatedCart) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const handleAddItem = (product) => {
-    dispatch(addItem(product)); // Dispatch addItem action
+    const updatedCart = [...cart];
+    const index = updatedCart.findIndex(item => item.item_id === product.item_id);
+    if (index !== -1) {
+      updatedCart[index].qty += 1; // Increase the quantity
+    } else {
+      updatedCart.push({ ...product, qty: 1 }); // Add new item if not found
+    }
+    setCart(updatedCart); // Update cart state
+    updateCartInLocalStorage(updatedCart); // Save updated cart to localStorage
   };
 
   const handleRemoveItem = (product) => {
-    dispatch(removeItem(product)); // Dispatch removeItem action
+    const updatedCart = cart.filter(item => item.item_id !== product.item_id); // Remove the item
+    setCart(updatedCart); // Update cart state
+    updateCartInLocalStorage(updatedCart); // Save updated cart to localStorage
   };
 
   const applyPromoCode = () => {
-    if (promoCode === "helloID") {
-      setDiscount(0.11); // 11% discount
-    } else {
-      setDiscount(0);
+    if (selectedCoupon) {
+      const discountPercentage = selectedCoupon.discount_value;
+      setDiscount(discountPercentage); // Set the discount percentage
     }
   };
 
   const clearCart = () => {
-    localStorage.removeItem("cart");
-    dispatch(setCart([])); // Clear the Redux cart
+    setCart([]); // Clear cart state
+    localStorage.removeItem("cart"); // Clear localStorage
   };
 
   const EmptyCart = () => (
     <div className="container mx-auto text-center py-20">
       <h4 className="text-2xl font-semibold mb-4">Your Cart is Empty</h4>
-      <Link to="/restaurants/2" className="btn  btn-outline-dark mx-4 text-blue-600 hover:bg-blue-100 px-6 py-2 border border-blue-600 rounded">
-        <i className="fa fa-arrow-left"></i>
-         Add something
+      <Link to="/restaurants/2" className="btn btn-outline-dark mx-4 text-blue-600 hover:bg-blue-100 px-6 py-2 border border-blue-600 rounded">
+        <i className="fa fa-arrow-left"></i> Add something
       </Link>
     </div>
   );
@@ -51,12 +65,12 @@ const Checkout = () => {
     let totalItems = 0;
 
     cart.forEach((item) => {
-      subtotal += item.price * item.qty; // Multiply price by qty
+      subtotal += item.price * item.qty;
       totalItems += item.qty;
     });
 
-    const discountAmount = subtotal * discount;
-    const grandTotal = subtotal + shipping - discountAmount;
+    const discountAmount = (subtotal * discount) / 100; // Calculate discount
+    const grandTotal = subtotal + shipping - discountAmount; // Calculate grand total
 
     return (
       <section className="py-16 bg-gray-100">
@@ -93,15 +107,24 @@ const Checkout = () => {
               <button className="w-full text-center bg-gray-200 text-gray-800 py-2 rounded-md mb-4 hover:bg-gray-300">
                 + Add Payment Method
               </button>
-              <h5 className="text-xl font-semibold mb-4">Add Promo Code</h5>
+              <h5 className="text-xl font-semibold mb-4">Select Coupon</h5>
               <div className="flex items-center mb-4">
-                <input
-                  type="text"
-                  placeholder="Enter promo code"
-                  value={promoCode}
-                  onChange={(e) => setPromoCode(e.target.value)}
+                <select
+                  value={selectedCoupon ? selectedCoupon.coupon_id : ""}
+                  onChange={(e) => {
+                    const coupon = coupons.find(c => c.coupon_id.toString() === e.target.value);
+                    console.log("Selected Coupon:", coupon);
+                    setSelectedCoupon(coupon);
+                  }}
                   className="border px-4 py-2 w-full rounded-md"
-                />
+                >
+                  <option value="">Select Coupon</option>
+                  {coupons.map((coupon) => (
+                    <option key={coupon.coupon_id} value={coupon.coupon_id}>
+                      {coupon.code} - {coupon.discount_value}% off (Min order: ${coupon.min_order_amount})
+                    </option>
+                  ))}
+                </select>
                 <button onClick={applyPromoCode} className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700">
                   Apply
                 </button>
@@ -142,6 +165,22 @@ const Checkout = () => {
       </section>
     );
   };
+
+  useEffect(() => {
+    // Fetch coupons on component mount
+    const fetchCoupons = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/coupons");
+        const data = await response.json();
+        console.log("Coupons fetched:", data.coupons); // Debugging
+        setCoupons(data.coupons);
+      } catch (err) {
+        console.error("Error fetching coupons:", err);
+      }
+    };
+
+    fetchCoupons();
+  }, []);
 
   return (
     <div className="container mx-auto py-8">

@@ -8,7 +8,7 @@ const HeroSection = () => {
     <div className="relative w-full bg-[#EDF3FC] text-gray-900 h-screen flex flex-col">
       {/* Hero Section */}
       <div className=" flex-4 mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center">
-        {/* Text Section */}
+        {/* Text Section */} 
         <div className="lg:w-1/2 text-center lg:text-left">
           <h2 className="text-4xl font-bold leading-tight">
             Many Restaurants in <span className="text-red-500">1 Order</span>
