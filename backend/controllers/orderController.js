@@ -41,7 +41,6 @@ exports.getOrderDetails = async (req, res) => {
 exports.updateOrderStatus = async (req, res) => {
     const { orderId } = req.params;
     const { status } = req.body;
-    const supabase = req.supabase;
  
     const validStatuses = ["Delivered", "In Progress", "Cancelled", "Pending"];
     if (!validStatuses.includes(status)) {

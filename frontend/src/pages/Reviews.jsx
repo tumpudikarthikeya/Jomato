@@ -27,9 +27,9 @@ const Reviews = () => {
  
   const handleReviewSubmit = async (event) => {
     event.preventDefault();
- 
+   const user_id = sessionStorage.getItem("user_id");
     const reviewData = {
-      user_id: "35238746-e488-4f3b-9703-fde4ba1352a2",  // Replace with actual user ID if available
+      user_id: user_id,  // Replace with actual user ID if available
       restaurant_id: restaurantId,  // This should come from useParams
       rating: foodRating,
       comment: reviewComment,
@@ -69,31 +69,10 @@ const Reviews = () => {
       <h1 className="text-4xl p-4 font-bold">Write a review</h1>
  
       {/* Dish Info */}
-      <div className="bg-gray-300 rounded-xl m-4 p-3">
-        <div className="flex gap-10 p-3">
-          <img
-            src="https://tse4.mm.bing.net/th?id=OIP.GjIwCh89aXCNSbCMbriWkwHaE7&pid=Api&P=0&h=180"
-            alt="Not found"
-            className="rounded-xl max-w-35 max-h-35"
-          />
-          <div>
-            <h1 className="text-3xl py-4">Thali</h1>
-            <div className="text-lg">
-              <div className="flex">
-                <h1 className="mr-2">Order</h1>
-                <span>Id</span>
-              </div>
-              <div className="flex">
-                <h1 className="mr-2">Placed on</h1>
-                <span>22-02-2025</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
  
       {/* Feedback Section */}
-      <div className="p-4 grid grid-cols-3 gap-8">
+      <div className="p-4 flex gap-8">
         <div className="col-span-2">
           <h1 className="text-2xl font-bold">Customer feedback:</h1>
           <div className="flex flex-col">
@@ -121,6 +100,9 @@ const Reviews = () => {
             </div>
           </div>
         </div>
+        <div>
+          <img src="" alt="" />
+        </div>
       </div>
  
       <div className="p-4 grid grid-cols-3 gap-8">
@@ -135,7 +117,7 @@ const Reviews = () => {
           ></textarea>
           <div className=" rounded-xl m-4 p-3">
             <button
-              className="bg-orange-500 text-white px-6 py-3 text-lg font-semibold shadow-md hover:bg-orange-600 transition-all flex items-center gap-2 rounded-lg"
+              className="bg-orange-500 text-white px-6 py-3 text-lg font-semibold shadow-md hover:bg-[#ff5200]  transition-all flex items-center gap-2 rounded-lg"
               onClick={handleReviewSubmit}
             >
               <MdOutlineReviews className="text-2xl" />

@@ -25,7 +25,7 @@ const DisplayCard = ({ title, desc, code, discount, img_url }) => {
     <div className="bg-white rounded-[40px] p-5 px-8 shadow-xl">
       <p className="text-3xl font-[1000]">{title}</p>
       <p className="text-xl font-medium">{desc}</p>
-      <p className="text-xl text-[#ff5200] font-medium mt-5">
+      <p className="text-xl text-[#ff5200]  bg-linear-to-r from-[#ff5200]/[30%] to-white pl-3 rounded-full font-medium mt-5">
         Up to {discount}% off
       </p>
       <div className="flex justify-between place-content-end items-end">

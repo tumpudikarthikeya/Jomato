@@ -56,7 +56,12 @@ const loginUser = async (req, res) => {
         }
  
         console.log("✅ Login successful for:", email);
-        res.json({ message: "Login successful", user: data.user });
+        console.log("JWT Token:", data.session.access_token);
+        res.json({
+            message: "Login successful",
+            user: data.user,
+            token: data.session.access_token, // 🔹 Include token in response
+        });
     } catch (error) {
         console.error("❌ Internal Server Error:", error.message);
         res.status(500).json({ error: "Internal server error" });

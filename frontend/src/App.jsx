@@ -7,13 +7,13 @@ import Home from './pages/Home';
 import Tracking from './pages/Tracking';
 import RestaurantDetail from './pages/RestaurantDetail';
 import { Link } from 'react-router-dom';
-import Navbar from './components/Home/Navbar';
+import Nav from './components/Home/NavBar';
 
 function App() {
   return (
     <BrowserRouter>
       
-          <Navbar />
+          <Nav />
 
       <div>
         <Routes>

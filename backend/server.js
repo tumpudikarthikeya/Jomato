@@ -34,6 +34,8 @@ app.use('/api/restaurantsDetails', require('./routes/restaurantDetail'));
  app.use('/api/coupons', require('./routes/couponsRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/reviews', require('./routes/review'));
+app.use('/api/cart', require('./routes/cart'));
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

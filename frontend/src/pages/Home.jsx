@@ -71,12 +71,12 @@ const Home = () => {
       {/* <HeroSection /> */}
       <DetailSection
         img_url={
-          "https://img.freepik.com/free-photo/stewed-white-beans-sliced-pumpkin-tomato-sauce_2829-19775.jpg?t=st=1740359704~exp=1740363304~hmac=9118c386592072242d7be605b2cc1bdeebf80f56225af32c3422d9677d898b41&w=996"
+          "image1.jpg"
         }
-        heading={'Pasta, Sushi, Steaks, Tacos Everything you want in just{" "}'}
-        highlight={"1 order."}
+        heading={'Your Favorite Dishes, All in One Place!'}
+        highlight={"at Jomato"}
         body={
-          "No more waiting for separate deliveries, get all the different foods together.*"
+          "No more waiting for deliveries, get all the different foods together.*"
         }
       />
  

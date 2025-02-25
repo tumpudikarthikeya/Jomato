@@ -15,7 +15,7 @@ const DetailSection = ({img_url,heading,highlight,body}) => {
         {/* Text Section */}
         <div className="lg:w-1/2 mt-6 lg:mt-0 lg:pl-10">
           <h2 className="text-3xl font-bold text-gray-900">
-          {heading} <br />
+          {heading+" "} 
             <span className="text-orange-500">{highlight}</span>
           </h2>
           <p className="text-gray-600 mt-4">

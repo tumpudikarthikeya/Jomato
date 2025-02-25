@@ -2,10 +2,10 @@ import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import DisplayCard from "./DisplayCard";
-
+// 3A7D44
 const Hero2 = () => {
   return (
-    <div className="bg-[#ff5200] w-full h-[calc(100vh-200px)] flex flex-col gap-30 items-center  relative">
+    <div className="bg-[#ff5200] w-full h-screen flex flex-col gap-30 items-center  relative">
       <img
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/testing/seo-home/Veggies_new.png"
         alt=""
@@ -18,7 +18,7 @@ const Hero2 = () => {
       />
       <div className="w-full flex flex-col items-center place-content-center  mt-10 gap-15">
         <p className="text-5xl font-bold text-white w-1/2 text-center">
-            Order food & groceries. Discover best restaurants. Swiggy it!
+            Order food & groceries. Discover best restaurants. Jomato it!
         </p>
 
         <div className="flex w-1/2 gap-5 items-center">
