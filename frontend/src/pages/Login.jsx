@@ -44,7 +44,7 @@ export default function LoginPage() {
        alt=""
        className="lg:h-screen items-start w-1/2 object-cover rounded-br-[400px]"/>
       <div className="w-full max-w-md  p-6 bg-white rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 ">Login</h2>
         {error && <p className="text-red-500 text-sm">{error}</p>}
         {message && <p className="text-green-500 text-sm">{message}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -66,7 +66,7 @@ export default function LoginPage() {
             required
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
-          <button type="submit" className="w-full bg-[#ff5200]  text-white p-3 rounded-lg hover:bg-orange-600 transition duration-200">
+          <button type="submit" className="w-full cursor-pointer bg-[#ff5200]  text-white p-3 rounded-lg hover:bg-orange-600 transition duration-200">
             Login
           </button>
         </form>

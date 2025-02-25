@@ -42,10 +42,10 @@ const Nav = () => {
         {!user_id ? (
           <div className="text-lg flex gap-5">
             <Link to={"/signin"} className="cursor-pointer">
-              <button className="text-white px-8 py-2 border rounded-xl">SignIn</button>
+              <button className="text-white px-8 py-2 border rounded-xl cursor-pointer">SignIn</button>
             </Link>
             <Link to={"/signup"} className="cursor-pointer">
-              <button className="text-white font-medium px-8 py-2 bg-black rounded-xl">SignUp</button>
+              <button className="text-white font-medium px-8 py-2 bg-black rounded-xl cursor-pointer">SignUp</button>
             </Link>
           </div>
         ) : (

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"; // Import useParams
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import { CiStar } from "react-icons/ci";
-import { MdOutlineReviews } from "react-icons/md";
+import { MdCheckCircle } from "react-icons/md"; // Import checkmark icon
 
 const labels = {
   0.5: "Worst",
@@ -23,8 +23,8 @@ const Reviews = () => {
   const [foodRating, setFoodRating] = useState(4);
   const [foodHover, setFoodHover] = useState(-1);
   const [reviewComment, setReviewComment] = useState("");
-  const [message, setMessage] = useState("");
   const [reviews, setReviews] = useState([]); // State to hold reviews
+  const [showSuccessIcon, setShowSuccessIcon] = useState(false); // State to control the success icon visibility
 
   // Fetch reviews when the component mounts
   useEffect(() => {
@@ -46,7 +46,7 @@ const Reviews = () => {
     };
 
     fetchReviews();
-  });
+  }, ); // Add restaurantId as a dependency
 
   const handleReviewSubmit = async (event) => {
     event.preventDefault();
@@ -54,8 +54,8 @@ const Reviews = () => {
     const user_email = sessionStorage.getItem("user_email");
 
     const reviewData = {
-      user_id: user_id, // Replace with actual user ID if available
-      restaurant_id: restaurantId, // This should come from useParams
+      user_id,
+      restaurant_id: restaurantId,
       rating: foodRating,
       comment: reviewComment,
       email: user_email,
@@ -73,21 +73,22 @@ const Reviews = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setMessage("Review submitted successfully!");
-        alert(result.message);
         setReviewComment("");
         setFoodRating(4);
+        setShowSuccessIcon(true); // Show the success icon
         // Optionally, refetch reviews after submitting a new one
+        setTimeout(() => {
+          setShowSuccessIcon(false);
+        }, 2000);
         fetchReviews();
+
+        // Hide the success icon after 3 seconds
+        
       } else {
-        setMessage(
-          result.message || "Failed to submit review. Please try again."
-        );
         console.error("Error:", result);
       }
     } catch (error) {
-      setMessage("Error submitting review.");
-      console.error("Error:", error);
+      console.error("Error submitting review:", error);
     }
   };
 
@@ -124,7 +125,7 @@ const Reviews = () => {
             </div>
             <textarea
               rows="7"
-              className="w-full min-h-50  border rounded-xl p-2 mt-4"
+              className="w-full min-h-50 border rounded-xl p-2 mt-4"
               value={reviewComment}
               onChange={(e) => setReviewComment(e.target.value)}
               placeholder="Write your review here..."
@@ -137,18 +138,20 @@ const Reviews = () => {
                 Submit Food Review
               </button>
             </div>
+            {showSuccessIcon && (
+              <div className="mt-2 text-green-500 flex items-center">
+                <MdCheckCircle size={24} />
+                <span className="ml-2">Review submitted successfully!</span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* List of Reviews Section */}
-        {/* List of Reviews Section */}
         <div className="flex-1 p-4 bg-white rounded-lg shadow-md">
           <h1 className="text-2xl font-bold">Reviews:</h1>
           {reviews.length > 0 ? (
-            <div
-              className="mt-4 overflow-y-auto max-h-[600px]"
-              // style={{ maxHeight: "300px", overflowY: "auto" }}
-            >
+            <div className="mt-4 overflow-y-auto max-h-[600px]">
               <div className="grid grid-cols-1 gap-4">
                 {reviews.map((review) => (
                   <div

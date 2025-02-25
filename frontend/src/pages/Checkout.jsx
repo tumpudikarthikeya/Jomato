@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // Import axios for making HTTP requests
+import Snackbar from "@mui/material/Snackbar"; // Import Snackbar
+import Alert from "@mui/material/Alert"; // Import Alert
 
 const Checkout = () => {
   const [discount, setDiscount] = useState(0);
@@ -8,7 +10,9 @@ const Checkout = () => {
   const [selectedCoupon, setSelectedCoupon] = useState(null);
   const [cart, setCart] = useState([]); // Store cart state locally
   const [shipping, setShipping] = useState(30.0); // Default shipping cost
-  const order_id = sessionStorage.getItem("order_id");
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // Snackbar state
+  const [snackbarMessage, setSnackbarMessage] = useState(""); // Snackbar message
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success"); // Snackbar severity
 
   // Get cart data from sessionStorage
   const getCartFromSessionStorage = () =>
@@ -104,7 +108,7 @@ const Checkout = () => {
         onClick={() => window.history.back()}
         className="btn btn-outline-dark mx-4 text-blue-600 hover:bg-blue-100 px-6 py-2 border border-blue-600 rounded"
       >
-        <i className="fa fa-arrow-left"></i> Add something
+        <i class Name="fa fa-arrow-left"></i> Add something
       </button>
     </div>
   );
@@ -145,19 +149,26 @@ const Checkout = () => {
           orderData
         );
         if (response.data.orderId) {
-          sessionStorage.setItem("order_id", response.data.orderId); // Store the order_id in sessionStorage
-          alert("Order placed successfully!");
-          window.location.href = `/order/track/${order_id}`;
-          // Redirect to order tracking page or any other page
+          // sessionStorage.setItem("order_id", response.data.orderId);
+          // setOrderId(response.data.orderId) // Store the order_id in sessionStorage
+          setSnackbarMessage("Order placed successfully!");
+          setSnackbarSeverity("success");
+          setSnackbarOpen(true);
+          setTimeout(() => {
+            window.location.href = `/order/track/${response.data.orderId}`;
+          }, 2000);
+          // window.location.href = `/order/track/${response.data.orderId}`;
         }
       } catch (error) {
         console.error("Error placing order:", error);
-        alert("An error occurred while placing the order. Please try again.");
+        setSnackbarMessage("An error occurred while placing the order. Please try again.");
+        setSnackbarSeverity("error");
+        setSnackbarOpen(true);
       }
     };
 
     return (
-      <section className="py-16 bg-gray-100">
+      <section className="py-8 ">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -216,10 +227,10 @@ const Checkout = () => {
                     );
                     setSelectedCoupon(coupon);
                   }}
-                  className="border px-4 py-2 w-full rounded-md"
+                  className="border px-4 py-2 w-full rounded-lg"
                 >
                   <option value="">Select Coupon</option>
-                  {coupons.map((coupon) => (
+                  {coupons.map((coupon ) => (
                     <option key={coupon.coupon_id} value={coupon.coupon_id}>
                       {coupon.code} - ${coupon.discount_value} off (Min order: $
                       {coupon.min_order_amount})
@@ -228,7 +239,7 @@ const Checkout = () => {
                 </select>
                 <button
                   onClick={applyPromoCode}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700"
+                  className="px-4 py-2 bg-[#ff5200] ml-1 text-white rounded-lg hover:bg-[#ff6b00] cursor-pointer"
                 >
                   Apply
                 </button>
@@ -236,11 +247,11 @@ const Checkout = () => {
               <h5 className="text-xl font-semibold mb-4">Order Summary</h5>
               <ul className="space-y-4">
                 <li className="flex justify-between">
-                  <span>Products ({totalItems})</span>
+                  <span>Items ({totalItems})</span>
                   <span>${Math.round(subtotal)}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Shipping</span>
+                  <span>Delivery Fee</span>
                   <span>${shipping}</span>
                 </li>
                 <li className="flex justify-between">
@@ -254,13 +265,13 @@ const Checkout = () => {
               </ul>
               <button
                 onClick={handlePlaceOrder}
-                className="mt-6 w-full text-center bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700"
+                className="mt-6 w-full text-center bg-[#ff5200] font-bold text-white py-3 rounded-md cursor-pointer hover:bg-[#ff6b00]"
               >
                 Place Order
               </button>
               <button
                 onClick={clearCart}
-                className="mt-4 w-full text-center bg-red-600 text-white py-3 rounded-md hover:bg-red-700"
+                className="mt-4 w-full text-center font-medium text-[#ff5200] py-3 rounded-md border border-[#ff5200] cursor-pointer"
               >
                 Clear Cart
               </button>
@@ -291,9 +302,23 @@ const Checkout = () => {
     setShipping(30.0); // Reset shipping to $30
   }, [selectedCoupon]);
 
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
     <div className="container mx-auto py-8">
       {cart.length > 0 ? <ShowCart /> : <EmptyCart />}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

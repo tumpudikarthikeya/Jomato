@@ -123,19 +123,19 @@ const RestaurantDetail = () => {
         <div className="mt-6">
           <div className="flex mb-4 gap-3">
             <button
-              className={`px-4 py-2 rounded-lg ${filter === "all" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800"}`}
+              className={`px-4 py-2 rounded-lg cursor-pointer ${filter === "all" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800" }`}
               onClick={() => setFilter("all")}
             >
               <FaUtensils className="inline mr-2" /> All
             </button>
             <button
-              className={`px-4 py-2 rounded-lg ${filter === "veg" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800"}`}
+              className={`px-4 py-2 rounded-lg cursor-pointer ${filter === "veg" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800"}`}
               onClick={() => setFilter("veg")}
             >
               <FaLeaf className="inline mr-2" /> Veg
             </button>
             <button
-              className={`px-4 py-2 rounded-lg ${filter === "non-veg" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800"}`}
+              className={`px-4 py-2 rounded-lg cursor-pointer ${filter === "non-veg" ? "bg-[#3A7D44] text-white" : "bg-white text-gray-800"}`}
               onClick={() => setFilter("non-veg")}
             >
               <TbMeat className="inline mr-2" /> Non-Veg
@@ -177,7 +177,7 @@ const RestaurantDetail = () => {
                   </div>
                   <div className="mt-2 p-3 pb-5 font-medium flex justify-between items-center">
                     <button
-                      className="text-[#3A7D44] border-1 border-[#3A7D44] shadow-md py-1 px-3 rounded-md w-full cursor-pointer"
+                      className="text-[#3A7D44] border-1 border-[#3A7D44] shadow-md py-1 px-3 rounded-md w-full cursor-pointer hover:bg-[#3A7D44] hover:text-white transition duration-200"
                       onClick={() => handleAddToCart(item)}
                     >
                       Add To Cart
