@@ -20,7 +20,7 @@ const RestaurantDetail = () => {
         const response = await fetch(
           `http://localhost:5000/api/restaurantsDetails/${restaurantId}`
         );
-
+          
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -102,7 +102,7 @@ const RestaurantDetail = () => {
                   </p>
                 </div>
                 <Link to={`/reviews/${restaurantId}`}>
-                  <button className="mt-4 px-4 py-2 bg-[#3A7D44] text-white font-semibold rounded-lg transition duration-200">
+                  <button className="mt-4 px-4 py-2 bg-[#3A7D44] text-white font-semibold rounded-lg transition duration-200 cursor-pointer">
                     Write a Review
                   </button>
                 </Link>

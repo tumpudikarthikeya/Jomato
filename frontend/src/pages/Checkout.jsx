@@ -97,12 +97,14 @@ const Checkout = () => {
     sessionStorage.removeItem("cart");
   };
 
-  const EmptyCart = () => (
-    <div className="container mx-auto text-center py-20">
+  const EmptyCart = () => ( 
+    <div className="container mx-auto text-center flex flex-col items-center h-screen py-20">
+      <img src="/empty_cart.png" alt="" />
       <h4 className="text-2xl font-semibold mb-4">Your Cart is Empty</h4>
       <button
         onClick={() => window.history.back()}
-        className="btn btn-outline-dark mx-4 text-blue-600 hover:bg-blue-100 px-6 py-2 border border-blue-600 rounded"
+        // className="btn btn-outline-dark mx-4 text-blue-600 hover:bg-blue-100 px-6 py-2 border border-blue-600 rounded cursor-pointer" 
+        className="py-2 text-[#ff5200] border text-lg px-6 rounded-xl cursor-pointer hover:text-white hover:bg-[#ff5200]"
       >
         <i className="fa fa-arrow-left"></i> Add something
       </button>

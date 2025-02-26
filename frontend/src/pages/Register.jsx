@@ -39,7 +39,7 @@ export default function Register() {
     <div className="flex flex-col lg:flex-row justify-start items-center gap-20 bg-gray-100">
       {/* Left side image */}
       <img 
-        src="https://cdn.dribbble.com/userupload/30073771/file/original-af08795f94a5da3e11f8aa2800607106.gif" 
+        src="/signup.gif" 
         alt="Signup Illustration" 
         className="lg:h-screen w-full lg:w-1/2 object-cover rounded-br-[400px]" 
       />
@@ -96,7 +96,7 @@ export default function Register() {
           />
           <button 
             type="submit" 
-            className="w-full p-3 bg-[#ff5200] text-white rounded-lg hover:bg-orange-600 transition duration-200"
+            className="w-full p-3 bg-[#ff5200] text-white rounded-lg hover:bg-orange-600 transition duration-200 cursor-pointer" 
           >
             Sign Up
           </button>

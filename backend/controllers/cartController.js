@@ -21,7 +21,7 @@ const createOrder = async (userId, restaurantId, totalAmount, status="success", 
       console.error('Error creating order:', error); // Log the error
       throw new Error(error.message);
     }
-    console.log(data);
+    // console.log(data);
     
     // Ensure order is created successfully
     // if (!order) {

@@ -9,10 +9,10 @@ const signupUser = async (req, res) => {
             return res.status(400).json({ error: "All fields are required" });
         }
  
-        console.log("⏳ Signing up user...");
+        // console.log("⏳ Signing up user...");
  
         // Sign up user with Supabase Auth
-        const { data, error } = await supabase.auth.signUp({ email, password,"Display Name" : name });
+        const { data, error } = await supabase.auth.signUp({ email, password});
  
         if (error) {
             return res.status(400).json({ error: error.message });
@@ -45,7 +45,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ error: "Email and password are required" });
         }
  
-        console.log("⏳ Logging in user...");
+        // console.log("⏳ Logging in user...");
  
         // 🔹 Supabase Login
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -55,8 +55,8 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ error: error.message });
         }
  
-        console.log("✅ Login successful for:", email);
-        console.log("JWT Token:", data.session.access_token);
+        // console.log("✅ Login successful for:", email);
+        // console.log("JWT Token:", data.session.access_token);
         res.json({
             message: "Login successful",
             user: data.user,

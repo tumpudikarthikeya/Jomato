@@ -39,7 +39,7 @@ const HeroSection = () => {
             </select>
           </div>
 
-          <a className="flex w-2/3 items-center py-4 gap-1 bg-white px-2 rounded-xl" href="#search">
+          <a className="flex lg:w-2/3 items-center py-4 gap-1 bg-white px-2 rounded-xl" href="#search">
             <input
               type="text"
               placeholder="Search for restaurants and food"

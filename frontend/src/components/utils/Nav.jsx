@@ -28,7 +28,7 @@ const Nav = () => {
 
       {/* Hamburger Menu Icon */}
       <div className="md:hidden">
-        <button onClick={toggleDrawer} className="text-white">
+        <button onClick={toggleDrawer} className="text-white cursor-pointer">
           <FaBars size={24} />
         </button>
       </div>
@@ -39,19 +39,19 @@ const Nav = () => {
         <div className="flex justify-between items-center p-4 bg-[#ff5200] text-white">
           <h2 className="text-xl font-bold">Menu</h2>
           <button onClick={toggleDrawer}>
-            <CgClose size={24} />
+            <CgClose size={24} className="cursor-pointer" />
           </button>
         </div>
         <div className="flex flex-col p-4">
           {!user_id ? (
             <>
-              <Link to={"/signin"} className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00]">SignIn</Link>
-              <Link to={"/signup"} className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00]">SignUp</Link>
+              <Link to={"/signin"} className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00] cursor-pointer">SignIn</Link>
+              <Link to={"/signup"} className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00] cursor-pointer">SignUp</Link>
             </>
           ) : (
             <>
-              <Link to="/checkout" className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00]">Cart</Link>
-              <button className="py-2 text-lg text-red-500 hover:text-red-700" onClick={clearSession}>LogOut</button>
+              <Link to={"/checkout"} className="py-2 text-lg text-[#ff5200] hover:text-[#ff6b00] cursor-pointer" onClick={toggleDrawer}>Cart</Link>
+              <button className="py-2 text-lg text-red-500 hover:text-red-700 cursor-pointer" onClick={clearSession}>LogOut</button>
             </>
           )}
         </div>
@@ -64,7 +64,7 @@ const Nav = () => {
               <FaCartShopping className="font-bold text-2xl text-white" />
             </Link>
         </button>
-              <button className="py-2 text-white border text-lg px-6 rounded-xl" onClick={clearSession}>LogOut</button>
+              <button className="py-2 text-white border text-lg px-6 rounded-xl cursor-pointer" onClick={clearSession}>LogOut</button>
       </div>
     </div>
   );

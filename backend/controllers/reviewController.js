@@ -2,7 +2,7 @@ const { supabase } = require('../config/db');
  
 const submitReview = async (req, res) => {
   const { user_id, restaurant_id, rating, comment,email } = req.body;
- console.log(req.body);
+//  console.log(req.body);
  
   // Validation: Ensure all fields are provided
   if (!user_id || !restaurant_id || !rating || !comment) {

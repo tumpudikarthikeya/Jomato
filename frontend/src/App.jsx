@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import ProtectedRoute from './components/utils/ProtectedRoute';
+// import ProtectedRoute from './components/utils/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Reviews from './pages/Reviews';
@@ -30,14 +30,14 @@ function Main() {
       {!noNavPaths.includes(location.pathname) && <Nav />}
 
       <Routes>
-        {/* Public Routes */}
-        <Route element={<ProtectedRoute />}>   
+        {/* Public Routes
+        <Route element={<ProtectedRoute />}>    */}
           
           <Route path="/restaurants/:id" element={<RestaurantDetail />} />
           <Route path="/reviews/:restaurantId" element={<Reviews />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order/track/:orderId" element={<Tracking />} />
-        </Route>
+        {/* </Route> */}
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />

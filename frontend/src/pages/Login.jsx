@@ -44,7 +44,7 @@ export default function LoginPage() {
     <div className="flex flex-col lg:flex-row gap-10 items-center h-screen bg-gray-100">
       {/* Left side image */}
       <img
-        src="https://cdn.dribbble.com/userupload/14672696/file/original-2e8d4c9aa547c3d34636dfc94717cbdd.gif"
+        src="/login.gif"
         alt="Login Illustration"
         className="lg:h-screen w-full lg:w-1/2 object-cover rounded-br-[400px]"
       />
