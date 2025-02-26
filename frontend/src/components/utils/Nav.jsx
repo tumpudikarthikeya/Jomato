@@ -10,6 +10,9 @@ const Nav = () => {
   };
 
   const user_id = sessionStorage.getItem("user_id") || null;
+  if(user_id==null){
+    window.location.replace("/signin");
+  }
 
 
   // State to manage the side drawer
